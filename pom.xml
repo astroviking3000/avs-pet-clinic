@@ -14,7 +14,7 @@
     </parent>
     <groupId>com.astroviking</groupId>
     <artifactId>avs-pet-clinic</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2-SNAPSHOT</version>
     <name>avs-pet-clinic</name>
     <description>AVS Pet Clinic Project</description>
 
@@ -41,7 +41,7 @@
 
     <scm>
         <developerConnection>scm:git:https://github.com/tyler-avs/avs-pet-clinic.git</developerConnection>
-      <tag>avs-pet-clinic-0.0.1</tag>
+      <tag>HEAD</tag>
   </scm>
 
 </project>
