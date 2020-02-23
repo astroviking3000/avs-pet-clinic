@@ -2,9 +2,11 @@ package com.astroviking.avspetclinic.services.map;
 
 import com.astroviking.avspetclinic.model.Owner;
 import com.astroviking.avspetclinic.services.OwnerService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
 
   @Override

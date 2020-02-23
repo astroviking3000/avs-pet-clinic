@@ -2,9 +2,11 @@ package com.astroviking.avspetclinic.services.map;
 
 import com.astroviking.avspetclinic.model.Vet;
 import com.astroviking.avspetclinic.services.VetService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class VetServiceMap extends AbstractMapService<Vet, Long> implements VetService {
 
   @Override
