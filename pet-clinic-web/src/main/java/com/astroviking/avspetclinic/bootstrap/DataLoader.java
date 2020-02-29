@@ -1,11 +1,9 @@
 package com.astroviking.avspetclinic.bootstrap;
 
-import com.astroviking.avspetclinic.model.Owner;
-import com.astroviking.avspetclinic.model.Pet;
-import com.astroviking.avspetclinic.model.PetType;
-import com.astroviking.avspetclinic.model.Vet;
+import com.astroviking.avspetclinic.model.*;
 import com.astroviking.avspetclinic.services.OwnerService;
 import com.astroviking.avspetclinic.services.PetTypeService;
+import com.astroviking.avspetclinic.services.SpecialtyService;
 import com.astroviking.avspetclinic.services.VetService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -18,17 +16,26 @@ public class DataLoader implements CommandLineRunner {
   private final OwnerService ownerService;
   private final VetService vetService;
   private final PetTypeService petTypeService;
+  private final SpecialtyService specialtyService;
 
   public DataLoader(
-      OwnerService ownerService, VetService vetService, PetTypeService petTypeService) {
+      OwnerService ownerService,
+      VetService vetService,
+      PetTypeService petTypeService,
+      SpecialtyService specialtyService) {
     this.ownerService = ownerService;
     this.vetService = vetService;
     this.petTypeService = petTypeService;
+    this.specialtyService = specialtyService;
   }
 
   @Override
   public void run(String... args) {
+    int count = petTypeService.findAll().size();
+    if (count == 0) loadData();
+  }
 
+  private void loadData() {
     PetType dog = new PetType();
     dog.setName("Dog");
     PetType savedDogPetType = petTypeService.save(dog);
@@ -73,15 +80,29 @@ public class DataLoader implements CommandLineRunner {
 
     System.out.println("Loading Owners...");
 
+    Specialty radiology = new Specialty();
+    radiology.setName("Radiology");
+    Specialty savedRadiology = specialtyService.save(radiology);
+
+    Specialty surgery = new Specialty();
+    surgery.setName("Surgery");
+    Specialty savedSurgery = specialtyService.save(surgery);
+
+    Specialty dentistry = new Specialty();
+    dentistry.setName("Dentistry");
+    Specialty savedDentistry = specialtyService.save(dentistry);
+
     Vet vet1 = new Vet();
     vet1.setFirstName("Carol");
     vet1.setLastName("Adams");
+    vet1.getSpecialties().add(savedRadiology);
 
     vetService.save(vet1);
 
     Vet vet2 = new Vet();
     vet2.setFirstName("Steve");
     vet2.setLastName("Jones");
+    vet2.getSpecialties().add(savedSurgery);
 
     vetService.save(vet2);
 

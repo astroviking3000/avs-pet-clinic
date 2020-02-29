@@ -1,14 +1,14 @@
 package com.astroviking.avspetclinic.services.map;
 
 import com.astroviking.avspetclinic.model.Specialty;
-import com.astroviking.avspetclinic.services.SpecialtiesService;
+import com.astroviking.avspetclinic.services.SpecialtyService;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
-public class SpecialtiesServiceMap extends AbstractMapService<Specialty, Long>
-    implements SpecialtiesService {
+public class SpecialtyServiceMap extends AbstractMapService<Specialty, Long>
+    implements SpecialtyService {
 
   @Override
   public Specialty findById(Long id) {
