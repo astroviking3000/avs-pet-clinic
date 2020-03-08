@@ -1,10 +1,7 @@
 package com.astroviking.avspetclinic.bootstrap;
 
 import com.astroviking.avspetclinic.model.*;
-import com.astroviking.avspetclinic.services.OwnerService;
-import com.astroviking.avspetclinic.services.PetTypeService;
-import com.astroviking.avspetclinic.services.SpecialtyService;
-import com.astroviking.avspetclinic.services.VetService;
+import com.astroviking.avspetclinic.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -17,16 +14,19 @@ public class DataLoader implements CommandLineRunner {
   private final VetService vetService;
   private final PetTypeService petTypeService;
   private final SpecialtyService specialtyService;
+  private final VisitService visitService;
 
   public DataLoader(
       OwnerService ownerService,
       VetService vetService,
       PetTypeService petTypeService,
-      SpecialtyService specialtyService) {
+      SpecialtyService specialtyService,
+      VisitService visitService) {
     this.ownerService = ownerService;
     this.vetService = vetService;
     this.petTypeService = petTypeService;
     this.specialtyService = specialtyService;
+    this.visitService = visitService;
   }
 
   @Override
@@ -107,5 +107,12 @@ public class DataLoader implements CommandLineRunner {
     vetService.save(vet2);
 
     System.out.println("Loading Vets...");
+
+    Visit catVisit = new Visit();
+    catVisit.setPet(cat1);
+    catVisit.setDate(LocalDate.now());
+    catVisit.setDescription("Sneezy kitty");
+
+    visitService.save(catVisit);
   }
 }
