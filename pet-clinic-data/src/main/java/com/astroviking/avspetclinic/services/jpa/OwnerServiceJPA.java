@@ -2,8 +2,6 @@ package com.astroviking.avspetclinic.services.jpa;
 
 import com.astroviking.avspetclinic.model.Owner;
 import com.astroviking.avspetclinic.repositories.OwnerRepository;
-import com.astroviking.avspetclinic.repositories.PetRepository;
-import com.astroviking.avspetclinic.repositories.PetTypeRepository;
 import com.astroviking.avspetclinic.services.OwnerService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -16,16 +14,9 @@ import java.util.Set;
 public class OwnerServiceJPA implements OwnerService {
 
   private final OwnerRepository ownerRepository;
-  private final PetRepository petRepository;
-  private final PetTypeRepository petTypeRepository;
 
-  public OwnerServiceJPA(
-      OwnerRepository ownerRepository,
-      PetRepository petRepository,
-      PetTypeRepository petTypeRepository) {
+  public OwnerServiceJPA(OwnerRepository ownerRepository) {
     this.ownerRepository = ownerRepository;
-    this.petRepository = petRepository;
-    this.petTypeRepository = petTypeRepository;
   }
 
   @Override
